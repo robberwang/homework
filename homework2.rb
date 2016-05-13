@@ -11,10 +11,23 @@ class GamePlayer
   attr_accessor :gm_out, :user_input
   # 任何 class 一定要加建構式
 
-  def initialize(gm_out,user_input) # 建構式
+  def initialize(gm_out) # 建構式
     @gm_out = gm_out # 物件變數
-    @user_input = user_input
+    @user_input = nil
     @result = nil
+  end
+
+  def get_input()
+    
+    puts "|===============================================|" 
+    puts "|Welcome to Rock Paper Scissors!!!              |"
+    puts "|===============================================|"
+
+    begin 
+      puts "please choose one of the following: R / P / S"
+      @user_input = gets.chomp.upcase
+    end while !["R", "P", "S"].include?(@user_input)
+
   end
 
   def check_choose()
@@ -60,21 +73,23 @@ end
 
 
 begin #可以美化輸出
-  puts "|===============================================|" 
-  puts "|Welcome to Rock Paper Scissors!!!              |"
-  puts "|===============================================|"
+#  puts "|===============================================|" 
+#  puts "|Welcome to Rock Paper Scissors!!!              |"
+#  puts "|===============================================|"
 
-  begin 
-    puts "please choose one of the following: R / P / S"
-    user_input = gets.chomp.upcase
-  end while !["R", "P", "S"].include?(user_input) 
+#  begin 
+#    puts "please choose one of the following: R / P / S"
+#    user_input = gets.chomp.upcase
+#  end while !["R", "P", "S"].include?(user_input) 
 
   #接下來請把剩下的部份寫出來...
 
   gm = ["R", "P", "S"]
   gm_out = gm.sample
 
-  theGame =  GamePlayer.new(gm_out,user_input)
+  theGame =  GamePlayer.new(gm_out)
+
+  theGame.get_input()
 
   theGame.check_choose()
 
